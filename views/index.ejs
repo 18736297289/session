@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    用户名：<input type="text" id="username">
+    <br>
+    密码：<input type="text" id="password">
+    <br>
+    个人描述：<input type="text" id="person">
+    <br>
+    <button id="btn"> <a href="/users">提交</a> </button>
+
+  </div>
+  <script>
+  const username = document.querySelector('#username')
+  const password = document.querySelector('#password')
+  const btn = document.querySelector('#btn')
+  const person = document.querySelector('#person')
+
+ 
+
+  btn.onclick= function(){
+    let formData = {
+    username:username.value,
+    password:password.value,
+    person:person.value
+
+  };
+    fetch('/login',{
+      method:'post',
+      body:JSON.stringify(formData),
+      headers:{
+        "Content-Type":"application/json"
+      }
+    }).then(res=>{
+      return res.json()
+    }).then(res => {
+      console.log(res)
+    })
+
+  }
+
+  </script>
+</body>
+</html>
